@@ -1,0 +1,12 @@
+1.  stdint.h is a header file containing constant type definitions.
+2.  Using uint8_t, uint32_t, int32_t, and uint16_t in a program puts a limit on how big your int will be to minimize space unnecessarily allocated.
+3.  DWORD is 4 bytes, a BYTE is 1 byte, LONG is 4 bytes, WORD is 2 bytes
+4.  BMPs start with the two bytes. 0x42 0x4D
+5.  bfSize is the size of the whole BMP. biSize is the size of the bitmapinfoheader, a constant 40 bytes.
+6.  If biHeight is negative the bitmap is top down with the origin in the top left.
+7.  biBitCount
+8.  If there is an error opening the file in read or write mode.
+9.  We only have one element we are dealing with.
+10. 1.
+11. sets the stream to a position given the offset.
+12. SEEK_CUR is the current position of the stream.
