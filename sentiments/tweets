@@ -1,0 +1,44 @@
+#!/usr/bin/env python3
+
+import os
+import sys
+import nltk
+import helpers
+
+from analyzer import Analyzer
+from termcolor import colored
+from nltk.tokenize import TweetTokenizer
+
+def main(argv):
+    #ensure proper usage
+
+    if len(argv) != 2:
+        print("Improper usage. ./tweets @screenname")
+        sys.exit()
+
+    # absolute paths to lists
+    positives = os.path.join(sys.path[0], "positive-words.txt")
+    negatives = os.path.join(sys.path[0], "negative-words.txt")
+
+    # instantiate analyzer
+    analyzer = Analyzer(positives, negatives)
+
+    # get recent tweets, tonkenize, and analyze
+    tknzr = TweetTokenizer(strip_handles=True, reduce_len=True)
+    tweets = helpers.get_user_timeline(sys.argv[1], count=50)
+
+
+    for i in range(len(tweets)):
+        tweet_words = tknzr.tokenize(tweets[i])
+        score = 0.0
+        for j in range(len(tweet_words)):
+            score += analyzer.analyze(tweet_words[j])
+        if score > 0.0:
+            print(colored(str(score) + " " + tweets[i], "green"))
+        elif score < 0.0:
+            print(colored(str(score) + " " + tweets[i], "red"))
+        else:
+            print(colored(str(score) + " " + tweets[i], "yellow"))
+
+if __name__ == "__main__":
+    main(sys.argv)
