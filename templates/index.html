@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block main %}
+<head>
+<style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+</style>
+</head>
+
+<P><b>{{ user }}</b></P>
+
+<table>
+    <tr>
+        <th>Cash (USD)</th>
+        <th>Stock Value (USD)</th>
+        <th>Total Value (USD)</th>
+    </tr>
+    <tr>
+        <td>{{ cash }}</td>
+        <td>{{ holdings }}</td>
+        <td>{{ t_value }}</td>
+    </tr>
+</table>
+<P><b>Stocks</b></P>
+<table>
+  <tr>
+    <th>Symbol</th>
+    <th>Name</th>
+    <th>Price (USD)</th>
+    <th>Units</th>
+    <th>Total Holding (USD)</th>
+  </tr>
+  {% for stock in stocks %}
+  <tr>
+    <td>{{ stock.symbol }}</td>
+    <td>{{ stock.name }}</td>
+    <td>{{ stock.price }}</td>
+    <td>{{ stock.units }}</td>
+    <td>{{ stock.holding }}</td>
+  </tr>
+  {% endfor %}
+</table>
+
+
+{% endblock %}

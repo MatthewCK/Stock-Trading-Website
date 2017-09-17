@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block main %}
+<head>
+<style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+</style>
+</head>
+
+<P><b>{{ user }}</b></P>
+
+<P><b>Transaction History</b></P>
+<table>
+  <tr>
+    <th>#</th>
+    <th>Type</th>
+    <th>Symbol</th>
+    <th>Price (USD)</th>
+    <th>Units</th>
+    <th>Total Cost (USD)</th>
+    <th>Date/Time</th>
+    <th>TransactionID</th>
+  </tr>
+  {% for hist in history %}
+  <tr>
+    <td>{{ hist.num }}</td>
+    <td>{{ hist.type }}</td>
+    <td>{{ hist.symbol }}</td>
+    <td>{{ hist.price }}</td>
+    <td>{{ hist.units }}</td>
+    <td>{{ hist.t_price }}</td>
+    <td>{{ hist.dt }}</td>
+    <td>{{ hist.id_hist }}</td>
+  </tr>
+  {% endfor %}
+</table>
+
+
+{% endblock %}
